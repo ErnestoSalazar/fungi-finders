@@ -301,6 +301,30 @@ because this layer comes second so things that come after win (like regular css 
     }
   }
 
+  .site-footer {
+    text-align: center;
+    background-color: var(--background-dark);
+    padding-block: 2rem;
+    display: grid;
+    gap: 2rem;
+
+    /* When using descendant selector even on layers */
+    /* Will override previous rules including from pseudo classes */
+    a {
+      color: var(--text-main);
+    }
+    a:hover,
+    a:focus-visible {
+      color: var(--text-brand-light);
+    }
+  }
+
+  .site-footer__title {
+    font-size: var(--font-size-lg);
+    font-family: var(--ff-heading);
+    font-weight: 700;
+  }
+
   .hero {
     text-align: center;
     font-size: var(--font-size-md);
@@ -317,6 +341,42 @@ because this layer comes second so things that come after win (like regular css 
       color: var(--text-brand);
       display: block;
     }
+  }
+
+  .card {
+    display: grid;
+    gap: var(--card-gap, 1rem);
+    padding: 1rem;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius-3);
+
+    img {
+      border-radius: var(--border-radius-2);
+    }
+  }
+
+  .card__title {
+    font-size: var(--card-title-font-size, var(--font-size-heading-sm));
+    color: var(--card-title-color, var(--text-brand));
+  }
+
+  .button {
+    /* two syntax display to control the outer and inner
+    display as different values */
+    display: inline flex;
+    font-size: var(--font-size-md);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-accent-main);
+    font-family: var(--ff-heading);
+    font-weight: 700;
+    border-radius: var(--border-radius-2);
+  }
+  .button:hover,
+  .button:focus-visible {
+    color: var(--text-high-contrast);
+    background-color: var(--background-accent-light);
   }
 }
 
