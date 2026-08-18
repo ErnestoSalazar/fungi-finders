@@ -169,6 +169,17 @@ because this layer comes second so things that come after win (like regular css 
   html {
     font-family: var(--ff-body);
     line-height: 1.6;
+    scroll-padding: 3rem;
+  }
+
+  /* The user went system settings and explicitly opted in for reduced motion at OS level */
+  /* @media (prefers-reduced-motion: reduce) {
+  } */
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
