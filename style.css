@@ -207,6 +207,12 @@ because this layer comes second so things that come after win (like regular css 
 }
 
 @layer layout {
+  .flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   /* Select all direct elements after the first one */
   .flow > * + * {
     margin-block-start: var(--flow-space, 1em);
@@ -502,6 +508,14 @@ because this layer comes second so things that come after win (like regular css 
   .button:focus-visible {
     color: var(--text-high-contrast);
     background-color: var(--background-accent-light);
+  }
+
+  select {
+    padding: 0.5rem;
+    background-color: var(--background-accent-main);
+    border: 0;
+    border-radius: var(--border-radius-2);
+    color: var(--text-high-contrast);
   }
 }
 
