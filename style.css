@@ -1,3 +1,11 @@
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation-duration: 0.5s;
+}
+
 /* Here we are listing what all of our layers are */
 /* And also sets the order of importance */
 @layer reset, base, layout, components, utilities;
