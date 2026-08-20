@@ -653,6 +653,10 @@ because this layer comes second so things that come after win (like regular css 
   [hidden] {
     display: none;
   }
+  .resizing * {
+    transition: none !important;
+    animation: none !important;
+  }
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
