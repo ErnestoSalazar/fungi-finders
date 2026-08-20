@@ -338,6 +338,9 @@ because this layer comes second so things that come after win (like regular css 
 
   .site-header {
     padding-block: 1rem;
+    position: relative;
+    /* clips content in the specified direction without adding scroll bars or affecting the other axis */
+    overflow-x: clip;
   }
   .site-header__inner {
     display: flex;
@@ -376,6 +379,14 @@ because this layer comes second so things that come after win (like regular css 
     @media (width < 760px) {
       position: absolute;
       display: none;
+      opacity: 0;
+      transition:
+        opacity 1s,
+        display 1s,
+        translate 1s;
+      transition-behavior: allow-discrete;
+      translate: 100% 0;
+
       z-index: 10;
       top: 0;
       right: 0;
@@ -386,22 +397,58 @@ because this layer comes second so things that come after win (like regular css 
       border-radius: 0 0 0 var(--border-radius-3);
       padding: 2rem;
 
-      /* targeting any .primary-navigation that has previous sibling
-        with an aria-expanded of true
-       */
-      [aria-expanded="true"] ~ & {
-        display: block;
-      }
-
       ul {
         gap: 0;
         flex-direction: column;
+      }
+
+      li {
+        --delay: 0.2s;
+        translate: 50%;
+        transition:
+          translate 0.5s var(--delay),
+          opacity 0.5s var(--delay);
+      }
+
+      li:nth-child(2) {
+        --delay: 0.4s;
+      }
+
+      li:nth-child(3) {
+        --delay: 0.6s;
       }
 
       li + li {
         margin-block-start: 1.5rem;
         padding-block-start: 1.5rem;
         border-top: 2px solid var(--background-accent-light);
+      }
+
+      /* targeting any .primary-navigation that has previous sibling
+        with an aria-expanded of true
+       */
+      [aria-expanded="true"] ~ & {
+        display: block;
+        opacity: 1;
+        translate: 0 0;
+
+        /* when instantly switched to block,
+        it will start with opacity of 0 and transition it to 1
+        The order also matters, needs to be after opacity: 1; declared above
+        or it this will get overrided */
+        @starting-style {
+          opacity: 0;
+          translate: 0 -100%;
+        }
+
+        li {
+          translate: 0 0;
+          opacity: 1;
+          @starting-style {
+            opacity: 0;
+            translate: 50% 0;
+          }
+        }
       }
     }
   }
