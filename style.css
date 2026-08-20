@@ -484,6 +484,12 @@ because this layer comes second so things that come after win (like regular css 
     background-image: url(/assets/hero.webp);
     background-size: cover;
     background-position: center;
+
+    /* forwards: when the animation reaches its final state, it stays at the last frame of the animation */
+    animation: fade-out forwards;
+    animation-timeline: view();
+    /* starting the animation once the element starts existing the page */
+    animation-range-start: exit;
   }
 
   .hero__title {
@@ -646,6 +652,17 @@ because this layer comes second so things that come after win (like regular css 
     border: 0;
     border-radius: var(--border-radius-2);
     color: var(--text-high-contrast);
+  }
+}
+
+@layer animations {
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 }
 
